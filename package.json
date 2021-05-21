@@ -1,0 +1,37 @@
+{
+    "name": "chia-hd-key",
+    "version": "0.1.0",
+    "author": "Felix Brucker <felix@felixbrucker.com>",
+    "license": "GPL-3.0-or-later",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/felixbrucker/chia-hd-key.git"
+    },
+    "bugs": {
+        "url": "https://github.com/felixbrucker/chia-hd-key/issues"
+    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "/dist"
+    ],
+    "scripts": {
+        "build": "tsc"
+    },
+    "keywords": [
+        "chia",
+        "hd-key",
+        "bls",
+        "typescript",
+        "library"
+    ],
+    "dependencies": {
+        "bip39": "^3.0.4",
+        "bls12-381-keygen-chia": "^0.1.2",
+        "noble-bls12-381": "^0.11.1"
+    },
+    "devDependencies": {
+        "@types/node": "^14.17.0",
+        "typescript": "^4.2.4"
+    }
+}
