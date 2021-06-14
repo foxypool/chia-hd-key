@@ -1,5 +1,7 @@
 import { verify } from 'noble-bls12-381';
 
+import { isUsingAugmentedScheme } from './scheme';
+
 export class PublicKey {
   static fromHex(publicKeyHex: string): PublicKey {
     return new PublicKey(Buffer.from(publicKeyHex, 'hex'));
@@ -24,6 +26,10 @@ export class PublicKey {
   }
 
   async verifyBuffer(signature: string, messageBuffer: Buffer) {
-    return verify(signature, Buffer.concat([this.buffer, messageBuffer]).toString('hex'), this.buffer);
+    const bufferToVerify = isUsingAugmentedScheme()
+      ? Buffer.concat([this.buffer, messageBuffer])
+      : messageBuffer;
+
+    return verify(signature, bufferToVerify.toString('hex'), this.buffer);
   }
 }

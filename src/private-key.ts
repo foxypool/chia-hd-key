@@ -3,6 +3,7 @@ import { deriveChild, deriveMaster } from 'bls12-381-keygen-chia';
 import { getPublicKey, sign } from 'noble-bls12-381';
 
 import { PublicKey } from './public-key';
+import { isUsingAugmentedScheme } from './scheme';
 
 export class PrivateKey {
   static fromHex(privateKeyHex: string): PrivateKey {
@@ -44,7 +45,11 @@ export class PrivateKey {
   }
 
   async signBuffer(messageBuffer: Buffer) {
-    return sign(Buffer.concat([this.getPublicKey().buffer, messageBuffer]).toString('hex'), this.buffer);
+    const bufferToSign = isUsingAugmentedScheme()
+      ? Buffer.concat([this.getPublicKey().buffer, messageBuffer])
+      : messageBuffer;
+
+    return sign(bufferToSign.toString('hex'), this.buffer);
   }
 
   deriveChildKey(path: number[]): PrivateKey {
