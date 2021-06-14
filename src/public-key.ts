@@ -15,7 +15,15 @@ export class PublicKey {
     return this.buffer.toString('hex');
   }
 
-  async verify(signature: string, message: string) {
-    return verify(signature, message, this.buffer);
+  async verifyString(signature: string, message: string) {
+    return this.verifyHex(signature, Buffer.from(message, 'utf8').toString('hex'));
+  }
+
+  async verifyHex(signature: string, messageHex: string) {
+    return this.verifyBuffer(signature, Buffer.from(messageHex, 'hex'));
+  }
+
+  async verifyBuffer(signature: string, messageBuffer: Buffer) {
+    return verify(signature, Buffer.concat([this.buffer, messageBuffer]).toString('hex'), this.buffer);
   }
 }

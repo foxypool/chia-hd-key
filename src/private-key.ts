@@ -35,8 +35,16 @@ export class PrivateKey {
     return new PublicKey(Buffer.from(getPublicKey(this.buffer)));
   }
 
-  async sign(message: string) {
-    return sign(message, this.buffer);
+  async signString(message: string) {
+    return this.signHex(Buffer.from(message, 'utf8').toString('hex'));
+  }
+
+  async signHex(messageHex: string) {
+    return this.signBuffer(Buffer.from(messageHex, 'hex'));
+  }
+
+  async signBuffer(messageBuffer: Buffer) {
+    return sign(Buffer.concat([this.getPublicKey().buffer, messageBuffer]).toString('hex'), this.buffer);
   }
 
   deriveChildKey(path: number[]): PrivateKey {
