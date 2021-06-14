@@ -1,6 +1,6 @@
 {
     "name": "chia-hd-key",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "Felix Brucker <felix@felixbrucker.com>",
     "license": "GPL-3.0-or-later",
     "repository": {
