@@ -88,10 +88,10 @@ md5.js@^1.3.4:
     inherits "^2.0.1"
     safe-buffer "^5.1.2"
 
-noble-bls12-381@^0.11.2:
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/noble-bls12-381/-/noble-bls12-381-0.11.2.tgz#01c22f270348e4d9472968eb7108517ef6511dc3"
-  integrity sha512-j+rwJlseYw0nmljLnHGRsU1kWfR0VZ5lTd5/fGR1Topr19A7t1VN+62uCGYoKUwr452nO6+eetKUxBSfk5z5Ug==
+noble-bls12-381@^0.14.1:
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/noble-bls12-381/-/noble-bls12-381-0.14.1.tgz#0d452441bb651f0d5f5d0e61456f42c3494bb552"
+  integrity sha512-egSRU82z60IqTfESlJTUPtE7REmf1Eq2uRZwSLPuwiB+vuMJZBaV67LeGQPSWSS1/G6m7mI6rzU3szz7Qic/8A==
 
 pbkdf2@^3.0.9:
   version "3.1.2"
