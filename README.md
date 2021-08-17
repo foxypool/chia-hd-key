@@ -6,4 +6,4 @@ chia-hd-key
 
 ## License
 
-GNU GPLv3 (see [LICENSE](https://github.com/felixbrucker/chia-hd-key/blob/master/LICENSE))
+GNU GPLv3 (see [LICENSE](https://github.com/foxypool/chia-hd-key/blob/master/LICENSE))

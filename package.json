@@ -5,10 +5,10 @@
     "license": "GPL-3.0-or-later",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/felixbrucker/chia-hd-key.git"
+        "url": "git+https://github.com/foxypool/chia-hd-key.git"
     },
     "bugs": {
-        "url": "https://github.com/felixbrucker/chia-hd-key/issues"
+        "url": "https://github.com/foxypool/chia-hd-key/issues"
     },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
