@@ -1,6 +1,6 @@
-export { aggregateSignatures, aggregatePublicKeys, verifyBatch } from 'noble-bls12-381';
-
-export { PrivateKey } from './private-key';
-export { PublicKey } from './public-key';
-export { keyPath } from './key-path';
-export { useAugmentedScheme, useBasicScheme } from './scheme';
+export { verifyBatch, aggregateSignatures, aggregatePublicKeys } from './batch'
+export { PrivateKey } from './private-key'
+export { PublicKey } from './public-key'
+export { keyPath } from './key-path'
+export type { SigningOptions } from './signing-options'
+export type { VerifyOptions } from './verify-options'

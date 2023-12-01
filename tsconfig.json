@@ -1,14 +1,19 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES2019",
+        "lib": ["ES2022"],
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "target": "ES2022",
+        "outDir": "./dist",
         "declaration": true,
-        "outDir": "./dist"
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "skipLibCheck": true,
+        "noImplicitOverride": true,
+        "isolatedModules": true,
+        "importsNotUsedAsValues": "remove"
     },
-    "include": [
-        "src/**/*"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "include": ["src"],
+    "exclude": ["node_modules"]
 }

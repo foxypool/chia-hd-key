@@ -1,35 +1,43 @@
-import { verify } from 'noble-bls12-381';
+import {bls12_381} from '@noble/curves/bls12-381'
 
-import { isUsingAugmentedScheme } from './scheme';
+import {AUGMENTED_SCHEME_DST_LABEL, BASIC_SCHEME_DST_LABEL} from './scheme'
+import {VerifyOptions} from './verify-options'
 
 export class PublicKey {
-  static fromHex(publicKeyHex: string): PublicKey {
-    return new PublicKey(Buffer.from(publicKeyHex, 'hex'));
+  public static fromBuffer(buffer: Uint8Array): PublicKey {
+    return new PublicKey(Buffer.from(buffer))
   }
 
-  public buffer: Buffer;
-
-  constructor(publicKeyBuffer: Buffer) {
-    this.buffer = publicKeyBuffer;
+  public static fromHex(publicKeyHex: string): PublicKey {
+    return new PublicKey(Buffer.from(publicKeyHex, 'hex'))
   }
 
-  toHex(): string {
-    return this.buffer.toString('hex');
+  public readonly buffer: Buffer
+
+  public constructor(publicKeyBuffer: Buffer) {
+    this.buffer = publicKeyBuffer
   }
 
-  async verifyString(signature: string, message: string) {
-    return this.verifyHex(signature, Buffer.from(message, 'utf8').toString('hex'));
+  public toHex(): string {
+    return this.buffer.toString('hex')
   }
 
-  async verifyHex(signature: string, messageHex: string) {
-    return this.verifyBuffer(signature, Buffer.from(messageHex, 'hex'));
+  public verifyString(signature: string, message: string, options?: Partial<VerifyOptions>): boolean {
+    return this.verifyBuffer(signature, Buffer.from(message, 'utf8'), options)
   }
 
-  async verifyBuffer(signature: string, messageBuffer: Buffer) {
-    const bufferToVerify = isUsingAugmentedScheme()
+  public verifyHex(signature: string, messageHex: string, options?: Partial<VerifyOptions>): boolean {
+    return this.verifyBuffer(signature, Buffer.from(messageHex, 'hex'), options)
+  }
+
+  public verifyBuffer(signature: string, messageBuffer: Uint8Array, options?: Partial<VerifyOptions>): boolean {
+    const useAugmentedScheme = options?.useAugmentedScheme ?? true
+    const bufferToVerify = useAugmentedScheme
       ? Buffer.concat([this.buffer, messageBuffer])
-      : messageBuffer;
+      : messageBuffer
+    const DST = useAugmentedScheme ? AUGMENTED_SCHEME_DST_LABEL : BASIC_SCHEME_DST_LABEL
 
-    return verify(signature, bufferToVerify.toString('hex'), this.buffer);
+    // @ts-expect-error untyped option
+    return bls12_381.verify(signature, bufferToVerify.toString('hex'), this.buffer, { DST })
   }
 }
